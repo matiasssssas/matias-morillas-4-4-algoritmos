@@ -1,39 +1,75 @@
 def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+   try:
+       num1 = float(input("Ingresa el primer numero:"))
+       num2 = float(input("Ingresa el segundo numero:"))
+       resultado = num1 / num2
+       print(f"El resultado de la divison es: {resultado}")
+   except ZeroDivisionError:
+       print("No se puede divir por cero")
+   except ValueError:
+       print("Porfavor, ingresa solo numeros.")
+   finally:
+       print("Fin del intento de division.")
+
+
+ej1()
+
 
 def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+   while True:
+       try:
+           edad = int(input("Ingrese tu edad"))
+           print(f"Tu edad es: {edad}")
+           break
+       except ValueError:
+           print("Eso no parece un numero entero. Intenta con otro.")
+       finally:
+           print("intento de entrar completado.")
+
+
+ej2()
+
 
 def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+   nombres = ["Ana", "Pedro", "Sofía"]
+
+
+   try:
+       indice = int(input("ingrese un indice (0 a 2): "))
+       print(f"el nombre en la posicion {indice} es: {nombres[indice]}")
+   except IndexError:
+       print("Ese indice esta  fuera del rango de la lista.")
+   except ValueError:
+       print("Debes ingresar un numero entero.")
+
+
+ej3()
+
 
 def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+   try:
+       num1 = int(input("ingrese el primer numero: "))
+       num2 = int(input("ingrese el segundo numero: "))
+       print(f"La suma es: {num1 + num2}")
+   except ValueError:
+       print("Uno o ambos valores no son numeros enteros.")
+
+
+ej4()
+
 
 def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+   try:
+       a = float(input("Ingresa el dividendo:"))
+       b = float(input("Ingresa el divisor:"))
+       resultado = a / b
+       print(f"El resultado de la division es: {resultado}")
+   except ZeroDivisionError:
+       print("No se puede dividir por cero")
+   except ValueError:
+       print("Ingresaste un valor no numerico")
+   finally:
+       print("Fin del programa del calculo")
 
 
+ej5()
