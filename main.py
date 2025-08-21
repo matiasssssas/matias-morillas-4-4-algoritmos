@@ -1,39 +1,50 @@
 def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+
+nombres = ["valentina","sebastian","matias","ignacio","jeremias","frick","alba","bruno","leonel"]
+
+
+palabra_mas_larga = ""
+for nombre in nombres:
+   if len(nombre) > len(palabra_mas_larga):
+       palabra_mas_larga = nombre
+
+
+print("la palabra con mas caracteres es:", palabra_mas_larga)
+
+
+ej1()
+
 
 def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+
+vocales = "aeiouAEIOU"
+contador = 0
+
+
+for nombre in nombres:
+   for letra in nombre:
+       if letra in vocales:
+           contador += 1
+
+
+print("Cantidad total de vocales",contador)
+
+
+ej2()
+
 
 def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
-
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+numeros = [2,5,8,3,7,1,4,6,9,10]
+factor = 3
+nueva_lista = []
 
 
+for numero in numeros:
+   nueva_lista.append(numero * factor)
+
+
+print("Lista multiplicada:",nueva_lista)
+
+
+ej3()
