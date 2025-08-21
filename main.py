@@ -1,39 +1,37 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+import random
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+palabras = ["programacion", "python", "computadora", "teclado", "pantalla", "raton", "internet"]
+palabra = random.choice(palabras)
+estado = ["_"] * len(palabra)
+letras = set()
+intentos = 7
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+print("Adivina la palabra:", " ".join(estado))
 
+
+while intentos > 0 and "_" in estado:
+   letra = input("Letra: ").lower()
+   if len(letra) != 1 or not letra.isalpha():
+       print("Ingresa solo una letra.")
+       continue
+   if letra in letras:
+       print("Ya intentaste esa letra.")
+       continue
+   letras.add(letra)
+   if letra in palabra:
+       for i, c in enumerate(palabra):
+           if c == letra:
+               estado[i] = letra
+   else:
+       intentos -= 1
+       print(f"Letra incorrecta. Te quedan {intentos} intentos.")
+   print(" ".join(estado))
+
+
+if "_" not in estado:
+   print(f"¡Ganaste! La palabra es {palabra}")
+else:
+   print(f"Perdiste. La palabra era {palabra}
 
