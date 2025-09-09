@@ -1,39 +1,53 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+import random
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+# Lista de nombres ( aleatorio )
+nombres = [
+    "Juan", "Carlos", "Luis", "Miguel", "Pedro", "Diego", "Fernando", "Jorge",
+    "Andrés", "Mario", "Sergio", "Alberto", "Raúl", "Ricardo", "Esteban",
+    "Héctor", "José", "David", "Antonio", "Rafael", "Francisco", "Gustavo",
+    "Alejandro", "Emilio", "Eduardo", "Martin", "Oscar", "Pablo", "Ricardo"
+]
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+posiciones = ["Delantero", "Mediocampista", "Defensor", "Arquero"]
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+def generar_equipo():
+    equipo = []
+    usados = set()  # evitar nombres repetidos en un mismo equipo
+    while len(equipo) < 23:
+        nombre = random.choice(nombres)
+        if nombre in usados:
+            continue
+        usados.add(nombre)
+        valoracion = random.randint(50, 100)
+        posicion = random.choice(posiciones)
+        equipo.append([nombre, posicion, valoracion])
+    return equipo
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+def valoracion_total(equipo):
+    return sum(jugador[2] for jugador in equipo)
 
+def imprimir_equipo(equipo, nombre_equipo):
+    print(f"Equipo {nombre_equipo}:")
+    print(f"{'Nombre':10} {'Posición':15} {'Valoración':10}")
+    for j in equipo:
+        print(f"{j[0]:10} {j[1]:15} {j[2]:10}")
+    print(f"Valoración total: {valoracion_total(equipo)}\n")
 
+# equipos
+equipo1 = generar_equipo()
+equipo2 = generar_equipo()
+
+# equipos
+imprimir_equipo(equipo1, "1")
+imprimir_equipo(equipo2, "2")
+
+# Comparar
+total1 = valoracion_total(equipo1)
+total2 = valoracion_total(equipo2)
+
+if total1 > total2:
+    print("El equipo 1 tiene más chances de ganar según su valoración.")
+elif total2 > total1:
+    print("El equipo 2 tiene más chances de ganar según su valoración.")
+else:
+    print("Ambos equipos tienen la misma valoración total, es un empate técnico.")
