@@ -1,39 +1,48 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+palos = ["Picas", "Tréboles", "Diamantes", "Corazones"]
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+mazo = []
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+def convertir_carta(num):
+    if num == 1:
+        return "A"
+    elif num == 11:
+        return "J"
+    elif num == 12:
+        return "Q"
+    elif num == 13:
+        return "K"
+    else:
+        return str(num)
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+# valor chips
+def valor_chips(carta):
+    try:
+        if carta == "A":
+            return 11
+        elif carta in ["J", "Q", "K"]:
+            return 10
+        else:
+            return int(carta)
+    except ValueError:
+
+        return 0
+
+# genero mazo
+for palo in palos:
+    for num in range(1, 14):
+        carta = convertir_carta(num)
+        mazo.append([carta, palo])
+
+# valor total
+valor_total = 0
+for carta, palo in mazo:
+    valor_total += valor_chips(carta)
+
+# mazo y total chips
+for carta, palo in mazo:
+    print(f"{carta} de {palo}")
+
+print("\nValor total de chips en el mazo:", valor_total)
 
 
