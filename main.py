@@ -1,39 +1,79 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+import random
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+nombres = [ "Sofía", "Mateo", "Valentina", "Sebastián", "Isabella", "Alejandro",
+            "Camila", "Santiago", "Luciana", "Nicolás", "Martina", "Benjamín", "Valeria",
+            "Joaquín", "Victoria", "Gabriel", "Emilia", "Samuel", "Julieta", "Daniel", "Antonella",
+            "Diego", "Rafaela", "Felipe", "Mariana", "Emmanuel", "Catalina", "Lucas", "Agostina", "Andrés",
+            "Constanza", "Ezequiel", "Bianca", "Ignacio", "Delfina", "Agustín", "Florencia", "Gastón",
+            "Guadalupe", "Hernán", "Julia", "Javier", "Laura", "Leonardo", "Magdalena", "Martín", "Micaela",
+            "Patricio", "Paulina", "Ramiro" ]
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+apellidos = [ "García", "Rodríguez", "González", "Fernández", "López", "Martínez",
+              "Sánchez", "Pérez", "Gómez", "Martín", "Jiménez", "Ruiz", "Hernández", "Díaz",
+              "Moreno", "Muñoz", "Álvarez", "Romero", "Alonso", "Gutiérrez", "Navarro", "Torres",
+              "Domínguez", "Vázquez", "Ramos", "Gil", "Ramírez", "Serrano", "Blanco", "Molina", "Castro",
+              "Suárez", "Ortega", "Rubio", "Delgado", "Morales", "Ortiz", "Marín", "Iglesias", "Núñez",
+              "Medina", "Cortés", "Cano", "Flores", "Herrera", "Gallego", "Vega", "Castillo", "Santos",
+              "Reyes" ]
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+clientes = []
+for i in range(len(nombres)):
+    cliente = {
+        "id": i + 1,
+        "nombre": nombres[i],
+        "apellido": apellidos[i],
+        "saldo": random.randint(500, 1500)
+    }
+    clientes.append(cliente)
+
+
+def mostrar_clientes():
+    for c in clientes:
+        print(f"ID:{c['id']} - {c['nombre']} {c['apellido']} - Saldo:${c['saldo']}")
+
+
+def buscar_cliente(id_buscar):
+    for c in clientes:
+        if c["id"] == id_buscar:
+            print(f"Cliente encontrado: {c['nombre']} {c['apellido']} - Saldo:${c['saldo']}")
+            return
+    print("Cliente no encontrado.")
+
+
+def depositar(id_cliente, monto):
+    for c in clientes:
+        if c["id"] == id_cliente:
+            c["saldo"] += monto
+            print(f"Nuevo saldo de {c['nombre']}: ${c['saldo']}")
+            return
+
+
+def retirar(id_cliente, monto):
+    for c in clientes:
+        if c["id"] == id_cliente:
+            if c["saldo"] >= monto:
+                c["saldo"] -= monto
+                print(f"Nuevo saldo de {c['nombre']}: ${c['saldo']}")
+            else:
+                print("Saldo insuficiente.")
+            return
+
+
+print("LISTA INICIAL DE CLIENTES:")
+mostrar_clientes()
+
+print("\nBUSCAR CLIENTE CON ID 2:")
+buscar_cliente(2)
+
+print("\nDEPOSITAR 200 A CLIENTE 1:")
+depositar(1, 200)
+
+print("\nRETIRAR 100 DE CLIENTE 1:")
+retirar(1, 100)
+
+print("\nLISTA FINAL DE CLIENTES:")
+mostrar_clientes()
+
 
 
