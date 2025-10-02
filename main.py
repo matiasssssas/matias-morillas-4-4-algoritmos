@@ -112,6 +112,7 @@ def ejercicio7():
 
 
 def ejercicio8():
+
     dic = {
         "a": 1,
         "b": 2,
@@ -123,11 +124,14 @@ def ejercicio8():
 
 
 def ejercicio9():
-    dic = {
+
+    dic1 = {
         "a": 1,
         "b": 2,
         "c": 3
+
     }
+
 
     dic2 = {
         "d": 4,
@@ -135,9 +139,12 @@ def ejercicio9():
         "g": 3
     }
 
-    dic3 = dic|dic2
 
-    print(dic3)
+    dic1.update(dic2)
+
+    print(dic1)
+
+ejercicio9()
 
 
 
