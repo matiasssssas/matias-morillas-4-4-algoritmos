@@ -1,39 +1,164 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+def ejercicio1():
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+    informacion_personal = {
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+       "nombre": "Matias",
+       "edad": 100,
+       "ciudad": "Buenos aires",
+       "Profesion": "Tecnico"
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+    }
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+    print(informacion_personal)
+
+
+
+def ejercicio2():
+
+    informacion_personal = {
+
+        "ciudad": "Cordoba",
+        "Profesion": "mecanico",
+        "telefono": 1136221134,
+
+    }
+
+    print(informacion_personal)
+
+
+
+def ejercicio3():
+
+    calificaciones = {
+
+        "Matematicas": 10,
+        "Lengua": 10,
+        "Ciencias": 10,
+
+    }
+
+    print(calificaciones["Matematicas"])
+
+
+
+def ejercicio4():
+
+    calificaciones = {
+
+        "Matematicas": 2,
+        "Lengua": 3,
+        "Ciencias": 5
+
+    }
+
+    promedio = sum(calificaciones.values())
+    len(calificaciones)
+    print("El promedio es:", promedio)
+
+
+
+def ejercicio5():
+
+    Paises = {
+
+        "Argentina": "La plata",
+        "Uruguay": "Montevideo",
+        "Chile":  "Santiago del chile",
+
+    }
+
+    pais = input("Ingrese un pais: ")
+    if pais in Paises:
+        print("La capital de", pais, " es: ", Paises[pais])
+    else:
+        print("Ese pais no esta en el diccionario")
+
+
+
+def ejercicio6():
+
+    precios = {
+
+        "Carne": 2000,
+        "Durazno": 1000,
+        "Yogurt": 500,
+
+    }
+
+    producto = input("Ingrese un producto:")
+    cantidad = print(input("Ingrese la cantidad:"))
+
+    if producto in precios:
+        total = precios[producto] * cantidad
+        print("El costo total es:", total)
+    else:
+        print("Ese producto no existe")
+
+
+
+def ejercicio7():
+
+    informacion_personal = {
+
+        "ciudad": "Cordoba",
+        "Profesion": "mecanico",
+        "telefono": 1136221134,
+
+    }
+
+    del informacion_personal["telefono"]
+    print(informacion_personal)
+
+
+
+def ejercicio8():
+    dic = {
+        "a": 1,
+        "b": 2,
+        "c": 3
+    }
+    print(dic.get("a") )
+    print(dic.get("z"))
+
+
+
+def ejercicio9():
+    dic = {
+        "a": 1,
+        "b": 2,
+        "c": 3
+    }
+
+    dic2 = {
+        "d": 4,
+        "f": 5,
+        "g": 3
+    }
+
+    dic3 = dic|dic2
+
+    print(dic3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
