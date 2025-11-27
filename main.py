@@ -1,39 +1,56 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+# Crear una Matriz 10x10 con indicadores de que no hay nada
+# Hacer un programa que aleatoriamente marque 3 casillas como casillas de tesoro
+# El programa debe de dejar que el usuario elija casillas
+# El programa debe de terminar si el usuario se queda sin intentos o si se encontraron TODOS los tesoros
+# El usuario tiene 5 intentos que se resetean cuando encuentra un tesoro.
+import random
+matriz=[["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""]]
+matrizAmostrar=[["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""],
+        ["","","","","","","","","",""]]
+cofres=3
+for x in range(cofres):
+        indice1 = random.randint(0,9)
+        indice2 = random.randint(0,9)
+        matriz[indice1][indice2]="✓"
+intentos=5
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+while cofres>0 and intentos!=0:
+        print(f"te quedan {intentos} intentos")
+        for fila in matrizAmostrar:
+                print(fila)
+        valor1=int(input("ingrese la fila en donde cree que esta: "))
+        valor2 = int(input("ingrese la columna en donde cree que esta: "))
+        if matriz[valor1-1][valor2-1]=="✓":
+                matrizAmostrar[valor1-1][valor2-1]="✓"
+                cofres -= 1
+                print(f"le diste te quedan {cofres} Cofres")
+        else:
+                matrizAmostrar[valor1-1][valor2-1] = "X"
+                print(f"no le diste intentalo devuelta te quedan {cofres} cofres")
+                intentos-=1
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
-
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
-
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
-
-
+if intentos==0:
+        print(f"""perdiste perro 
+                el mapa con los cofres era:
+""")
+        for fila in matriz:
+                print(fila)
+else:
+        print("ganaste alto capo")
