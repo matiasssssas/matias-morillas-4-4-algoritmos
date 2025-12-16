@@ -1,44 +1,64 @@
 import mysql.connector
-from mysql.connector import errorcode
 
-cursor = None
-cnx = None
-
-def ConectarBase():
-    global cnx, cursor
-
-    try:
-        cnx = mysql.connector.connect(user="root", password="", host="Localhost", database="telefono")
-        cursor = cnx.cursor(dictionary=True)
-        print('Conexión establecida')
-
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print('El numero o telefono incorrectos!')
-        elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            print('La base de datos no existe!')
-        else:
-            print(err)
-
-
-nombres = ["Matias,chechon,brunito"]
-numeros = [1123361112,1120435676,1109504040]
+nombres = []
+telefonos = []
 
 while True:
-        print("--- Menú ---")
-        print("1) Añadir contacto")
-        print("2) Mostrar contactos")
-        print("3) Buscar contacto por nombre")
-        print("4) Salir")
+    print("\n1 Agregar")
+    print("2 Mostrar")
+    print("3 Buscar")
+    print("4 Guardar en MySQL")
+    print("5 Salir")
 
-        opcion = input("Elegí una opción: ")
+    op = input("Opcion: ")
 
-        if opcion == "1":
-            nombre = input("Nombre: ")
-            numero = input("Número: ")
-            nombres.append(nombre)
-            numeros.append(numero)
-            print("Contacto añadido!")
+    if op == "1":
+        n = input("Nombre: ")
+        t = input("Telefono: ")
+        nombres.append(n)
+        telefonos.append(t)
+
+    elif op == "2":
+        for i in range(len(nombres)):
+            print(i, nombres[i], telefonos[i])
+
+    elif op == "3":
+        b = input("Nombre a buscar: ")
+        if b in nombres:
+            i = nombres.index(b)
+            print("Telefono:", telefonos[i])
+        else:
+            print("No existe")
+
+    elif op == "4":
+        for i in range(len(nombres)):
+            print(i, nombres[i], telefonos[i])
+
+        x = int(input("ID a guardar: "))
+
+        con = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="agenda"
+        )
+
+        cur = con.cursor()
+        cur.execute(
+            "INSERT INTO contacto (Numero, Telefono) VALUES (%s, %s)",
+            (nombres[x], telefonos[x])
+        )
+
+        con.commit()
+        con.close()
+
+        print("Guardado")
+
+    elif op == "5":
+        break
+
+    else:
+        print("Opcion incorrecta")
 
 
 
