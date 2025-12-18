@@ -139,3 +139,27 @@ if __name__ == "__main__":
     stock_critico()
     mas_vendidos_mes()
     calcular_total_ventas()
+
+
+
+
+CREATE DATABASE farmacia;
+USE farmacia;
+
+CREATE TABLE medicamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    categoria VARCHAR(50),
+    precio DECIMAL(10,2),
+    stock INT
+);
+
+CREATE TABLE ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_medicamento INT,
+    fecha DATE,
+    cantidad INT,
+    FOREIGN KEY (id_medicamento) REFERENCES medicamentos(id)
+);
+
+
