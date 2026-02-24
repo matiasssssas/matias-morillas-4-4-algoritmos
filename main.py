@@ -1,39 +1,91 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+def calculadora1():
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
+    precio = float(input("Ingrese el precio del producto: "))
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+    descuento = 0
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
+    if precio >= 100:
+        descuento = precio * 0.15
+
+    elif precio >= 50:
+        descuento = precio * 0.10
+
+    precio_final = precio - descuento
+
+    print("Descuento:", descuento)
+    print("Precio final:", precio_final)
+
+
+
+def adivinar2():
+    numero = int(input("Ingrese el numero del producto: "))
+
+    numero_secreto = 7
+
+    while numero != numero_secreto:
+        if numero > numero_secreto:
+            print("El numero es menor.")
+        else:
+            print("El numero es mayor.")
+
+        numero = int(input("Intente otra vez:"))
+
+    print("felicidades adivinaste el numero secreto ")
+
+def vocales3():
+    frase = input("Ingrese una frase: ")
+    contador = 0
+
+    for letra in frase:
+        if letra in "aeiouAEIOU":
+            contador += 1
+
+    print("La frase tiene", contador, "vocales.")
+
+def multiplicar4():
+    numero = int(input("Ingrese un numero entero: "))
+    for x in range(1,11):
+        resultado = numero * x
+        print(numero, "x", x, "=" , resultado)
+
+
+def entero5():
+    suma = 0
+
+    numero = int(input("Ingrese un numero entero: "))
+
+    while numero != 0:
+
         if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+            suma += numero
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+        numero = int(input("Ingrese otro vez un numero:"))
 
+    print("La suma de los numeros pares es:", suma)
 
+def temperatura6():
+    temperaturas = [22, 26, 18, 30, 24]
+
+    suma = 0
+    contador = 0
+    mayor = temperaturas[0]
+    menor = temperaturas[0]
+
+    for temp in temperaturas:
+        suma += temp
+
+        if temp > 25:
+            contador += 1
+
+        if temp > mayor:
+            mayor = temp
+
+        if temp < menor:
+            menor = temp
+
+    promedio = suma / len(temperaturas)
+
+    print("Promedio:", promedio)
+    print("Días mayores a 25°:", contador)
+    print("Día más caluroso:", mayor)
+    print("Día más frío:", menor)
