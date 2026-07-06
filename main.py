@@ -90,3 +90,41 @@ public static int[] BuscarPosicion(int[,] matriz, int valor)
     return new int[] { -1, -1 };
 }
 
+public static int calcularGananciaTotalPorVehiculo(int[,] matriz, int[] ganancias, int vehiculo)
+{
+    int total = 0;
+
+    for (int j = 0; j < matriz.GetLength(1); j++)
+    {
+        total += matriz[vehiculo, j] * ganancias[j];
+    }
+
+    return total;
+}
+
+public static int diaDeMayorRendimientoFlota(int[,] matriz, int[] ganancias)
+{
+    int maximo = -1;
+    int mejorDia = 0;
+
+    for (int j = 0; j < matriz.GetLength(1); j++)
+    {
+        int sumaEntregas = 0;
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            sumaEntregas += matriz[i, j];
+        }
+
+        int gananciaDia = sumaEntregas * ganancias[j];
+
+        if (gananciaDia > maximo)
+        {
+            maximo = gananciaDia;
+            mejorDia = j;
+        }
+    }
+
+    return mejorDia;
+}
+
+
