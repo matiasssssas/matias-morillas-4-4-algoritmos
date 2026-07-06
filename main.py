@@ -1,39 +1,92 @@
-def ej1():
-    numeros = [10, 20, 30, 40, 50]
-    suma_total = 0
-    for numero in numeros:
-        suma_total += numero
-    print("la suma total", suma_total)
+public static int busquedaL(int[] arreglo, int numero)
+{
+ 
+    for (int i = 0; i < arreglo.Length; i++)
+    {
+       
+        if (arreglo[i] == numero)
+        {
+            return i;
+        }
+    }
 
-def ej2():
-    cadena = "Programacion python"
-    contador_vocales = 0
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter in vocales:
-            print("cantidad de vocales:", contador_vocales)
-            
 
-def ej3():
-    numero = int(input("ingresa un numero entero:"))
-    for i in range(1,11):
-        producto = numero * i
-        print(f"{numero} x {i} = {producto}")
+    public static int productoEscalar(int[] A, int[] B)
+{
+    int resultado = 0;
 
-def ej4():
-    numeros = [1,2,3,4,5,6,7,8,9,10]
-    pares = []
-    for numero in numeros:
-        if numero % 2 == 0:
-            pares.append(numero)
-            print("Numeros pares:", pares)
-            print("cantidad de pares:", len(pares))
+ 
+   
+    for (int i = 0; i < A.Length; i++)
+    {
+       
+        resultado += A[i] * B[i];
+    }
 
-def ej5():
-    filas = 5
-    for i in range(1, filas + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
+   
+    return resultado;
+}
 
+    public static int[] ordenar(int[] arreglo)
+{
+    int n = arreglo.Length;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+
+            if (arreglo[j] > arreglo[j + 1])
+            {
+                int temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+            }
+        }
+    }
+   
+    return arreglo;
+
+}
+
+public static int EncontrarFilaMaximoElemento(int[,] matriz)
+{
+    int filas = matriz.GetLength(0);
+    int columnas = matriz.GetLength(1);
+    
+    int maximo = matriz[0, 0];
+    int filaMaximo = 0;
+
+    for (int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++)
+        {
+            if (matriz[i, j] > maximo)
+            {
+                maximo = matriz[i, j];
+                filaMaximo = i;
+            }
+        }
+    }
+
+    return filaMaximo;
+}
+
+public static int[] BuscarPosicion(int[,] matriz, int valor)
+{
+    int filas = matriz.GetLength(0);
+    int columnas = matriz.GetLength(1);
+
+    for (int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++)
+        {
+            if (matriz[i, j] == valor)
+            {
+                return new int[] { i, j };
+            }
+        }
+    }
+
+    return new int[] { -1, -1 };
+}
 
