@@ -1,130 +1,129 @@
-public static int busquedaL(int[] arreglo, int numero)
+using System;
+using System.Collections.Generic;
+
+namespace PixelStore
 {
- 
-    for (int i = 0; i < arreglo.Length; i++)
-    {
-       
-        if (arreglo[i] == numero)
-        {
-            return i;
-        }
-    }
-
-
-    public static int productoEscalar(int[] A, int[] B)
+// ESTRUCTURA BASE
+struct Videojuego
 {
-    int resultado = 0;
-
- 
-   
-    for (int i = 0; i < A.Length; i++)
-    {
-       
-        resultado += A[i] * B[i];
-    }
-
-   
-    return resultado;
+public int Id;
+public string Titulo;
+public double Precio;
+public int Stock;
 }
+// QUE HACE ESTA PARTE: Es el molde para agrupar los datos de un juego (Id, Titulo, Precio, Stock).
 
-    public static int[] ordenar(int[] arreglo)
+class Program
 {
-    int n = arreglo.Length;
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = 0; j < n - i - 1; j++)
-        {
+// VARIABLES GLOBALES
+static Videojuego[] inventario = new Videojuego[3];
+static string[,] gondolas = new string[2, 2];
+static Queue<string> cola = new Queue<string>();
+// QUE HACE ESTA PARTE: Crea el vector de juegos, la matriz de gondolas y la cola de clientes.
 
-            if (arreglo[j] > arreglo[j + 1])
-            {
-                int temp = arreglo[j];
-                arreglo[j] = arreglo[j + 1];
-                arreglo[j + 1] = temp;
-            }
-        }
-    }
-   
-    return arreglo;
-
-}
-
-public static int EncontrarFilaMaximoElemento(int[,] matriz)
+// FUNCION PRINCIPAL Y MENU
+static void Main()
 {
-    int filas = matriz.GetLength(0);
-    int columnas = matriz.GetLength(1);
-    
-    int maximo = matriz[0, 0];
-    int filaMaximo = 0;
+inventario[0] = new Videojuego { Id = 1, Titulo = "FIFA", Precio = 45000, Stock = 5 };
+inventario[1] = new Videojuego { Id = 2, Titulo = "GTA", Precio = 30000, Stock = 2 };
+inventario[2] = new Videojuego { Id = 3, Titulo = "Zelda", Precio = 50000, Stock = 0 };
 
-    for (int i = 0; i < filas; i++)
-    {
-        for (int j = 0; j < columnas; j++)
-        {
-            if (matriz[i, j] > maximo)
-            {
-                maximo = matriz[i, j];
-                filaMaximo = i;
-            }
-        }
-    }
+gondolas[0, 0] = "FIFA";
+gondolas[0, 1] = "Vacio";
+gondolas[1, 0] = "GTA";
+gondolas[1, 1] = "Zelda";
 
-    return filaMaximo;
-}
+int opcion = 0;
 
-public static int[] BuscarPosicion(int[,] matriz, int valor)
+do
 {
-    int filas = matriz.GetLength(0);
-    int columnas = matriz.GetLength(1);
+Console.WriteLine("Menu PixelStore");
+Console.WriteLine("1 Ver catalogo");
+Console.WriteLine("2 Ver ubicacion en gondolas");
+Console.WriteLine("3 Registrar cliente");
+Console.WriteLine("4 Atender cliente");
+Console.WriteLine("5 Salir");
+Console.Write("Elegi una opcion: ");
 
-    for (int i = 0; i < filas; i++)
-    {
-        for (int j = 0; j < columnas; j++)
-        {
-            if (matriz[i, j] == valor)
-            {
-                return new int[] { i, j };
-            }
-        }
-    }
+int.TryParse(Console.ReadLine(), out opcion);
 
-    return new int[] { -1, -1 };
+if (opcion == 1) MostrarCatalogo();
+if (opcion == 2) ConsultarGondola();
+if (opcion == 3) RegistrarCliente();
+if (opcion == 4) AtenderCliente();
+
+} while (opcion != 5);
 }
+// QUE HACE ESTA PARTE: Carga los datos iniciales y corre el menu principal en bucle.
 
-public static int calcularGananciaTotalPorVehiculo(int[,] matriz, int[] ganancias, int vehiculo)
+// MODULO 1: CATALOGO
+static void MostrarCatalogo()
 {
-    int total = 0;
-
-    for (int j = 0; j < matriz.GetLength(1); j++)
-    {
-        total += matriz[vehiculo, j] * ganancias[j];
-    }
-
-    return total;
-}
-
-public static int diaDeMayorRendimientoFlota(int[,] matriz, int[] ganancias)
+for (int i = 0; i < inventario.Length; i++)
 {
-    int maximo = -1;
-    int mejorDia = 0;
-
-    for (int j = 0; j < matriz.GetLength(1); j++)
-    {
-        int sumaEntregas = 0;
-        for (int i = 0; i < matriz.GetLength(0); i++)
-        {
-            sumaEntregas += matriz[i, j];
-        }
-
-        int gananciaDia = sumaEntregas * ganancias[j];
-
-        if (gananciaDia > maximo)
-        {
-            maximo = gananciaDia;
-            mejorDia = j;
-        }
-    }
-
-    return mejorDia;
+Console.WriteLine($"ID: {inventario[i].Id} | Titulo: {inventario[i].Titulo} | Stock: {inventario[i].Stock}");
 }
+}
+// QUE HACE ESTA PARTE: Muestra la lista completa de videojuegos y su stock.
 
+// MODULO 2: GONDOLAS
+static void ConsultarGondola()
+{
+Console.Write("Ingresa la fila (0 o 1): ");
+int fila = int.Parse(Console.ReadLine());
 
+Console.Write("Ingresa la columna (0 o 1): ");
+int columna = int.Parse(Console.ReadLine());
+
+Console.WriteLine($"En esa posicion esta: {gondolas[fila, columna]}");
+}
+// QUE HACE ESTA PARTE: Busca qué juego hay en la matriz segun la fila y columna ingresadas.
+
+// MODULO 3: COLA DE CLIENTES
+static void RegistrarCliente()
+{
+Console.Write("Nombre del cliente: ");
+string nombre = Console.ReadLine();
+cola.Enqueue(nombre);
+Console.WriteLine($"Cliente agregado. Hay {cola.Count} en fila.");
+}
+// QUE HACE ESTA PARTE: Agrega un cliente al final de la fila usando Enqueue().
+
+// MODULO 4: VENTA Y ATENCION
+static void AtenderCliente()
+{
+if (cola.Count > 0)
+{
+string actual = cola.Peek();
+Console.WriteLine($"Siguiente en la fila: {actual}");
+
+Console.Write("Ingresa el ID del juego que compra: ");
+int id = int.Parse(Console.ReadLine());
+
+for (int i = 0; i < inventario.Length; i++)
+{
+if (inventario[i].Id == id)
+{
+if (inventario[i].Stock > 0)
+{
+inventario[i].Stock--;
+cola.Dequeue();
+Console.WriteLine("Venta exitosa");
+}
+else
+{
+Console.WriteLine("No hay stock");
+}
+return;
+}
+}
+Console.WriteLine("ID incorrecto");
+}
+else
+{
+Console.WriteLine("La fila esta vacia");
+}
+}
+// QUE HACE ESTA PARTE: Procesa la venta, resta stock y saca al cliente de la cola con Dequeue().
+}
+}
